@@ -27,7 +27,8 @@ def make_plots(data, outdir):
         cmap="viridis",
     )
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
-    plt.colorbar(p)
+    cbar = plt.colorbar(p)
+    cbar.set_label("calibrated range corrected backscatter")
     plt.ylim([0,4000])
     plt.ylabel("Altitude (m)")
     plt.xlabel(f"Time (UTC {x[1].strftime('%Y-%m-%d')})")
@@ -50,7 +51,8 @@ def make_plots(data, outdir):
         cmap="viridis",
     )
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
-    plt.colorbar(p)
+    cbar = plt.colorbar(p)
+    cbar.set_label("calibrated range corrected backscatter")
     plt.ylim([0,4000])
     plt.ylabel("Altitude (m)")
     plt.xlabel(f"Time (UTC {x[1].strftime('%Y-%m-%d')})")
@@ -73,7 +75,8 @@ def make_plots(data, outdir):
         cmap="viridis",
     )
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
-    plt.colorbar(p)
+    cbar = plt.colorbar(p)
+    cbar.set_label("calibrated range corrected backscatter")
     plt.ylim([0,4000])
     plt.ylabel("Altitude (m)")
     plt.xlabel(f"Time (UTC) {x[1].strftime('%Y-%m-%d')}")
