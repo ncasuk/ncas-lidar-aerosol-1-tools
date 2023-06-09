@@ -5,3 +5,6 @@ python make_plots.py /save/images/here /path/to/input_file [/path/to/input_file2
 ```
 
 input_file can be json (or list of jsons) or netCDF (coming soon)
+
+
+Requires matplotlib 3.6+
