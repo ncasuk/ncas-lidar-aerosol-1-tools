@@ -5,9 +5,10 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
+import os
 
 
-def make_plots(data, outdir):
+def make_plots(data, outdir, ylim=[0, 4000]):
     """
     Make plots for each channel
     """
@@ -29,7 +30,7 @@ def make_plots(data, outdir):
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
     cbar = plt.colorbar(p)
     cbar.set_label("calibrated range corrected backscatter")
-    plt.ylim([0,4000])
+    plt.ylim(ylim)
     plt.ylabel("Altitude (m)")
     plt.xlabel(f"Time (UTC {x[1].strftime('%Y-%m-%d')})")
     plt.savefig(f"{outdir}/channel1.png")
@@ -53,7 +54,7 @@ def make_plots(data, outdir):
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
     cbar = plt.colorbar(p)
     cbar.set_label("calibrated range corrected backscatter")
-    plt.ylim([0,4000])
+    plt.ylim(ylim)
     plt.ylabel("Altitude (m)")
     plt.xlabel(f"Time (UTC {x[1].strftime('%Y-%m-%d')})")
     plt.savefig(f"{outdir}/channel2.png")
@@ -77,7 +78,7 @@ def make_plots(data, outdir):
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
     cbar = plt.colorbar(p)
     cbar.set_label("calibrated range corrected backscatter")
-    plt.ylim([0,4000])
+    plt.ylim(ylim)
     plt.ylabel("Altitude (m)")
     plt.xlabel(f"Time (UTC) {x[1].strftime('%Y-%m-%d')}")
     plt.savefig(f"{outdir}/channel11.png")
@@ -135,7 +136,13 @@ def main_from_json(input_files, outdir):
 
     data = join_data(all_data)
 
-    make_plots(data, outdir)
+    if not os.path.exists(f"{outdir}/4km"):
+        os.mkdir(f"{outdir}/4km")
+    if not os.path.exists(f"{outdir}/15km"):
+        os.mkdir(f"{outdir}/15km")
+        
+    make_plots(data, f"{outdir}/4km", ylim=[0, 4000])
+    make_plots(data, f"{outdir}/15km", ylim=[0, 15000])
 
     
 def main_from_netcdf(input_file, outdir):
